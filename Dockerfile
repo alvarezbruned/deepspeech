@@ -1,35 +1,18 @@
 FROM python:3.6-slim
 
 RUN apt-get update
-RUN apt-get install -y python-pip
-RUN apt-get install -y python3-pip
-
-#RUN pip install python-xlib
-#RUN pip3 install python3-xlib
-#RUN apt-get install -y python3-tk python3-dev
-#RUN apt-get install -y python-pyaudio
-#RUN apt-get install -y libpulse-dev
-#RUN apt-get install -y python-pyaudio python3-pyaudio
-#RUN apt-get install -y python python-dev python-pip build-essential swig git libpulse-dev
-#RUN apt-get -y install libasound2-dev
-RUN apt-get install -y ffmpeg
-
-#RUN touch /root/.Xauthority
-#RUN touch /home/seluser/.Xauthority
-#RUN chown seluser:seluser /home/seluser/.Xauthority
-#RUN touch /root/.Xauthority
-#
-#USER seluser
-#RUN XAUTHORITY=/home/seluser/.Xauthority pip3 install pyautogui
-#RUN pip install speechrecognition --user
-#
-#RUN pip3 install requests --user
-#
-#RUN pip3 install pocketsphinx --user
-#RUN pip3 install requests --user
+RUN apt-get install -y \
+  python-pip \
+  python3-pip \
+  ffmpeg \
+  inotify-tools
 
 RUN pip3 install deepspeech --user
+WORKDIR /root
 
-COPY entrypoint.sh /root
+ADD https://github.com/mozilla/DeepSpeech/releases/download/v0.5.1/deepspeech-0.5.1-models.tar.gz /root
+RUN tar xvf deepspeech-0.5.1-models.tar.gz
+RUN rm *.tar.gz
+RUN mv /root/deepspeech-0.5.1-models/ /root/modelsEn/
 
-ENTRYPOINT ["/root/entrypoint.sh"]
+ENTRYPOINT ["deepspeech"]
