@@ -5,7 +5,8 @@ RUN apt-get install -y \
   python-pip \
   python3-pip \
   ffmpeg \
-  inotify-tools
+  inotify-tools \
+  curl
 
 RUN pip3 install deepspeech --user
 WORKDIR /root
