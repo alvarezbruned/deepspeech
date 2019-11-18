@@ -7,10 +7,9 @@ RUN apt-get install -y \
   ffmpeg \
   inotify-tools \
   curl \
-  --no-install-recommends \
+  && pip3 install deepspeech --user \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install deepspeech --user
 WORKDIR /root
 
 ADD https://github.com/mozilla/DeepSpeech/releases/download/v0.5.1/deepspeech-0.5.1-models.tar.gz /root
