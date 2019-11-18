@@ -16,8 +16,8 @@ RUN tar xvf deepspeech-0.5.1-models.tar.gz
 RUN rm *.tar.gz
 RUN mv /root/deepspeech-0.5.1-models/ /root/modelsEn/
 
-
-RUN useradd -s /bin/bash user
+RUN useradd deep -u 1000 -s /bin/bash
+RUN chown deep -R /home/deep
 USER deep
 
 ENTRYPOINT ["deepspeech"]
