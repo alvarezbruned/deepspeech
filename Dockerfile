@@ -18,6 +18,7 @@ RUN useradd deep -u 1000 -s /bin/bash
 RUN mkdir -p /home/deep
 RUN mv /root/deepspeech-0.5.1-models/ /home/deep/modelsEn/
 RUN chown deep -R /home/deep
+WORKDIR /home/deep
 USER deep
 
 WORKDIR /home/deep
