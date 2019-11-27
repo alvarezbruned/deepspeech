@@ -8,7 +8,6 @@ RUN apt-get install -y \
   inotify-tools \
   curl
 
-RUN pip3 install deepspeech --user
 WORKDIR /root
 
 ADD https://github.com/mozilla/DeepSpeech/releases/download/v0.5.1/deepspeech-0.5.1-models.tar.gz /root
@@ -21,4 +20,7 @@ RUN mv /root/deepspeech-0.5.1-models/ /home/deep/modelsEn/
 RUN chown deep -R /home/deep
 USER deep
 
-ENTRYPOINT ["deepspeech"]
+WORKDIR /home/deep
+RUN pip3 install deepspeech --user
+RUN ls -l /home/deep/.local/bin
+ENTRYPOINT ["/home/deep/.local/bin/deepspeech"]
