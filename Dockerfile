@@ -10,13 +10,14 @@ RUN apt-get install -y \
 
 WORKDIR /root
 
-ADD https://github.com/mozilla/DeepSpeech/releases/download/v0.5.1/deepspeech-0.5.1-models.tar.gz /root
-RUN tar xvf deepspeech-0.5.1-models.tar.gz
+ADD https://github.com/mozilla/DeepSpeech/releases/download/v0.6.0/deepspeech-0.6.0-models.tar.gz /root
+RUN tar xvf deepspeech-0.6.0-models.tar.gz
 RUN rm *.tar.gz
 
 RUN useradd deep -u 1000 -s /bin/bash
 RUN mkdir -p /home/deep
-RUN mv /root/deepspeech-0.5.1-models/ /home/deep/modelsEn/
+RUN mv /root/deepspeech-0.6.0-models/ /home/deep/modelsEn/
+
 RUN chown deep -R /home/deep
 WORKDIR /home/deep
 USER deep
