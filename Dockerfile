@@ -26,12 +26,6 @@ RUN \
   mkdir -pv /home/deep && \
   ls -lsa  /tmp && \
   ls -lsa  /root && \
-  mv -v /root/deepspeech-0.6.0-models/ /home/deep/modelsEn/ \
-  && \
-  useradd deep -u 1000 -s /bin/bash \
-  && chown -Rv deep:deep /home/deep
-
-WORKDIR /home/deep
-USER deep
+  mv -v /root/deepspeech-0.6.0-models/ /home/deep/modelsEn/ 
 
 ENTRYPOINT ["deepspeech"]
